@@ -10,7 +10,7 @@ export function Navbar() {
           <span className="text-xl font-bold">GigLink</span>
         </div>
         <div className="flex items-center space-x-4">
-          {/* Wallet button will go here */}
+          <appkit-button />
         </div>
       </div>
     </nav>
