@@ -2,8 +2,8 @@ export type Token = 'ETH' | 'USDC' | 'DEGEN';
 
 export enum BountyStatus {
   OPEN = 'OPEN',
-  IN_PROGRESS = 'IN_PROGRESS',
-  IN_REVIEW = 'IN_REVIEW',
+  ASSIGNED = 'ASSIGNED',
+  SUBMITTED = 'SUBMITTED',
   PAID = 'PAID',
 }
 

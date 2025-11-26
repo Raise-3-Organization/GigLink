@@ -2,7 +2,11 @@
 
 import React, { useState, useMemo } from 'react';
 import { MOCK_BOUNTIES } from '@/data/mock-bounties';
-import { BountyCard } from '@/components/BountyCard';
+import { BountyCard } from '@/components/bounty/BountyCard';
+import { BountyCardHeader } from '@/components/bounty/BountyCardHeader';
+import { BountyCardBadges } from '@/components/bounty/BountyCardBadges';
+import { BountyReward } from '@/components/bounty/BountyReward';
+import { BountyCardFooter } from '@/components/bounty/BountyCardFooter';
 import { BountyGrid } from '@/components/BountyGrid';
 import { FeedHeader } from '@/components/FeedHeader';
 
@@ -73,9 +77,17 @@ export default function BrowsePage() {
             {filteredBounties.map((bounty) => (
               <BountyCard
                 key={bounty.id}
-                bounty={bounty}
-                onClick={(id) => console.log('Clicked bounty:', id)}
-              />
+                onClick={() => console.log('Clicked bounty:', bounty.id)}
+              >
+                <BountyCardHeader title={bounty.title} issuerAddress={bounty.issuer.address} />
+                <BountyCardBadges status={bounty.status} tags={bounty.tags} />
+                <BountyReward 
+                  amount={bounty.reward.amount} 
+                  token={bounty.reward.token} 
+                  usdValue={bounty.reward.usdValue} 
+                />
+                <BountyCardFooter deadline={bounty.deadline} applicantCount={bounty.applicantCount} />
+              </BountyCard>
             ))}
           </BountyGrid>
         ) : (
