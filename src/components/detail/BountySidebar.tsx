@@ -1,15 +1,39 @@
+'use client';
+
+import { useState } from 'react';
 import { Bounty } from '@/types/bounty';
 import { BountyReward } from '@/components/bounty/BountyReward';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, ShieldCheck } from 'lucide-react';
+import { ApplyButton } from '@/components/bounty/ApplyButton';
+import { ApplyModal } from '@/components/bounty/ApplyModal';
+import { ApplyForm } from '@/components/bounty/ApplyForm';
+import { useSubmitApplication } from '@/hooks/useSubmitApplication';
 
 interface BountySidebarProps {
   bounty: Bounty;
 }
 
 export function BountySidebar({ bounty }: BountySidebarProps) {
+  const [isApplyOpen, setIsApplyOpen] = useState(false);
+  const { submitApplication, isSubmitting } = useSubmitApplication();
+
+  const handleSubmit = async (values: any) => {
+    const success = await submitApplication(values);
+    if (success) {
+      setIsApplyOpen(false);
+    }
+  };
   return (
     <div className="space-y-6">
+      <ApplyModal open={isApplyOpen} onOpenChange={setIsApplyOpen} trigger={null}>
+        <ApplyForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
+      </ApplyModal>
+
+      <div className="hidden lg:block">
+        <ApplyButton onClick={() => setIsApplyOpen(true)} />
+      </div>
+
       {/* Reward Card */}
       <div className="p-6 bg-white rounded-xl border border-slate-200 shadow-sm space-y-4">
         <h3 className="font-semibold text-slate-900">Total Reward</h3>

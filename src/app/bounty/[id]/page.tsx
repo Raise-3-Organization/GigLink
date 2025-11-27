@@ -3,6 +3,7 @@ import { BountyHero } from '@/components/detail/BountyHero';
 import { BountySidebar } from '@/components/detail/BountySidebar';
 import { DescriptionRenderer } from '@/components/detail/DescriptionRenderer';
 import { BackButton } from '@/components/ui/BackButton';
+import { StickyApplyButton } from '@/components/detail/StickyApplyButton';
 import { notFound } from 'next/navigation';
 
 interface PageProps {
@@ -40,6 +41,8 @@ export default async function BountyDetailPage({ params }: PageProps) {
           <BountySidebar bounty={bounty} />
         </div>
       </div>
+      
+      <StickyApplyButton />
     </main>
   );
 }
