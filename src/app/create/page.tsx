@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { WizardProvider, useWizard } from '@/components/create-bounty/WizardProvider';
 import { CreateBountyForm } from '@/components/create-bounty/CreateBountyForm';
 import { PageHeader } from '@/components/PageHeader';
-import { PreviewToggle } from '@/components/create-bounty/PreviewToggle';
+import { BountyCardPreview } from '@/components/create-bounty/BountyCardPreview';
 
 function CreateBountyContent() {
   const [mode, setMode] = useState<'edit' | 'preview'>('edit');
@@ -27,12 +27,7 @@ function CreateBountyContent() {
         <CreateBountyForm />
       ) : (
         <div className="max-w-xl mx-auto mt-8">
-          <div className="p-6 border rounded-xl bg-slate-50 text-center text-muted-foreground">
-            <p>Preview Card Coming Soon (Commit #13)</p>
-            <pre className="mt-4 text-xs text-left bg-slate-100 p-4 rounded overflow-auto">
-              {JSON.stringify(formData, null, 2)}
-            </pre>
-          </div>
+          <BountyCardPreview data={formData} />
         </div>
       )}
     </div>
