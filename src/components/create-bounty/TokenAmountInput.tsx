@@ -9,6 +9,8 @@ import {
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 
+import { useTokenPrice } from '@/hooks/useTokenPrice';
+
 interface TokenAmountInputProps {
   amount: string;
   token: string;
@@ -22,6 +24,12 @@ export function TokenAmountInput({
   onAmountChange, 
   onTokenChange 
 }: TokenAmountInputProps) {
+  const { price, loading } = useTokenPrice(token);
+  
+  const estimatedValue = amount && !isNaN(parseFloat(amount)) 
+    ? (parseFloat(amount) * price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+    : '$0.00';
+
   return (
     <div className="space-y-2">
       <label className="text-sm font-medium text-slate-700">Reward Budget</label>
@@ -49,7 +57,9 @@ export function TokenAmountInput({
         </div>
       </div>
       <p className="text-xs text-slate-500">
-        Estimated value: <span className="font-semibold text-slate-700">$--.--</span>
+        Estimated value: <span className="font-semibold text-slate-700">
+          {loading ? 'Calculating...' : estimatedValue}
+        </span>
       </p>
     </div>
   );
