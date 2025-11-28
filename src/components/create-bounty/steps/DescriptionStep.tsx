@@ -6,7 +6,6 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import ReactMarkdown from 'react-markdown';
-import { cn } from '@/lib/utils';
 
 export function DescriptionStep() {
   const { formData, updateFormData } = useWizard();

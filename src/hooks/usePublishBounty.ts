@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 import { CreateBountyFormValues } from '@/lib/schemas/bounty';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 export function usePublishBounty() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [hash, setHash] = useState<string | null>(null);
-  const router = useRouter();
+  // const router = useRouter();
 
   const publishBounty = async (data: CreateBountyFormValues) => {
     setIsLoading(true);

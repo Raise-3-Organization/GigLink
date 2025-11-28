@@ -53,7 +53,7 @@ export function BountyCardPreview({ data }: BountyCardPreviewProps) {
           />
           
           <BountyCardFooter 
-            deadline={data.deadline || new Date(Date.now() + 86400000 * 7)} // Default +7 days
+            deadline={data.deadline || new Date()} // Default to current date if missing, or handle in component
             applicantCount={0} 
           />
         </BountyCard>

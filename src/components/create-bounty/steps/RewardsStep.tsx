@@ -36,7 +36,7 @@ export function RewardsStep() {
           <Label htmlFor="difficulty">Difficulty Level</Label>
           <Select
             value={formData.difficulty}
-            onValueChange={(val: any) => updateFormData({ difficulty: val })}
+            onValueChange={(val: string) => updateFormData({ difficulty: val as 'Beginner' | 'Intermediate' | 'Expert' })}
           >
             <SelectTrigger id="difficulty" className="rounded-xl border-slate-200">
               <SelectValue placeholder="Select difficulty" />
