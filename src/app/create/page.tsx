@@ -1,3 +1,6 @@
+import { WizardProvider } from '@/components/create-bounty/WizardProvider';
+import { CreateBountyForm } from '@/components/create-bounty/CreateBountyForm';
+
 export default function CreateBountyPage() {
   return (
     <div className="max-w-3xl mx-auto">
@@ -7,7 +10,9 @@ export default function CreateBountyPage() {
           Create a new bounty to get help with your tasks.
         </p>
       </div>
-      {/* Wizard will go here */}
+      <WizardProvider>
+        <CreateBountyForm />
+      </WizardProvider>
     </div>
   );
 }
