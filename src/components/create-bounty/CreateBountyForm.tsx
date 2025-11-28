@@ -1,12 +1,12 @@
 'use client';
 
 import { useWizard } from './WizardProvider';
+import { BasicInfoStep } from './steps/BasicInfoStep';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Placeholder steps
-const BasicInfoStep = () => <div>Basic Info Step (Coming Soon)</div>;
 const DescriptionStep = () => <div>Description Step (Coming Soon)</div>;
 const RewardsStep = () => <div>Rewards Step (Coming Soon)</div>;
 const ReviewStep = () => <div>Review Step (Coming Soon)</div>;
