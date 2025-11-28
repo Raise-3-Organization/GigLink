@@ -1,8 +1,10 @@
 import { PageHeader } from '@/components/PageHeader';
 import { BountyList, Bounty } from '@/components/dashboard/BountyList';
+import { SubmissionList, Submission } from '@/components/dashboard/SubmissionList';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // Mock Data
 const MOCK_BOUNTIES: Bounty[] = [
@@ -35,6 +37,30 @@ const MOCK_BOUNTIES: Bounty[] = [
   },
 ];
 
+const MOCK_SUBMISSIONS: Submission[] = [
+  {
+    id: '1',
+    bountyTitle: 'Design a Logo for DeFi Protocol',
+    bountyReward: '200 USDC',
+    submittedAt: new Date(Date.now() - 86400000 * 1),
+    status: 'PENDING',
+  },
+  {
+    id: '2',
+    bountyTitle: 'Write Technical Documentation',
+    bountyReward: '0.1 ETH',
+    submittedAt: new Date(Date.now() - 86400000 * 3),
+    status: 'IN_REVIEW',
+  },
+  {
+    id: '3',
+    bountyTitle: 'Audit Smart Contract',
+    bountyReward: '2.5 ETH',
+    submittedAt: new Date(Date.now() - 86400000 * 15),
+    status: 'ACCEPTED',
+  },
+];
+
 export default function DashboardPage() {
   return (
     <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -56,11 +82,28 @@ export default function DashboardPage() {
       />
       
       <div className="mt-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-slate-900">Recent Bounties</h2>
-          <Button variant="link" className="text-blue-600">View All</Button>
-        </div>
-        <BountyList bounties={MOCK_BOUNTIES} />
+        <Tabs defaultValue="bounties" className="space-y-6">
+          <TabsList>
+            <TabsTrigger value="bounties">My Bounties</TabsTrigger>
+            <TabsTrigger value="submissions">My Submissions</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="bounties" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-slate-900">Recent Bounties</h2>
+              <Button variant="link" className="text-blue-600">View All</Button>
+            </div>
+            <BountyList bounties={MOCK_BOUNTIES} />
+          </TabsContent>
+          
+          <TabsContent value="submissions" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-slate-900">Recent Submissions</h2>
+              <Button variant="link" className="text-blue-600">View All</Button>
+            </div>
+            <SubmissionList submissions={MOCK_SUBMISSIONS} />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
