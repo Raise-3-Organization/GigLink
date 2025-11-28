@@ -147,3 +147,17 @@ export const MOCK_BOUNTIES: Bounty[] = [
     createdAt: new Date('2025-11-15'),
   },
 ];
+
+export const CURRENT_USER = {
+  id: 'u1',
+  name: 'Alice Dev',
+  address: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+};
+
+export function getMyBounties() {
+  return MOCK_BOUNTIES.filter(bounty => bounty.issuer.id === CURRENT_USER.id);
+}
+
+export function getAllBounties() {
+  return MOCK_BOUNTIES;
+}

@@ -11,35 +11,11 @@ import Link from 'next/link';
 import { Plus } from 'lucide-react';
 
 // Mock Data
-const MOCK_BOUNTIES: Bounty[] = [
-  {
-    id: '1',
-    title: 'Build a Responsive Landing Page',
-    status: 'OPEN',
-    rewardAmount: 0.5,
-    rewardToken: 'ETH',
-    createdAt: new Date(Date.now() - 86400000 * 2), // 2 days ago
-    applicantCount: 3,
-  },
-  {
-    id: '2',
-    title: 'Integrate Web3 Wallet Connection',
-    status: 'IN_PROGRESS',
-    rewardAmount: 1000,
-    rewardToken: 'USDC',
-    createdAt: new Date(Date.now() - 86400000 * 5), // 5 days ago
-    applicantCount: 8,
-  },
-  {
-    id: '3',
-    title: 'Fix Smart Contract Bug',
-    status: 'COMPLETED',
-    rewardAmount: 5000,
-    rewardToken: 'DEGEN',
-    createdAt: new Date(Date.now() - 86400000 * 10), // 10 days ago
-    applicantCount: 1,
-  },
-];
+import { getMyBounties } from '@/data/mock-bounties';
+
+// Mock Data
+// Replaced by centralized mock data
+
 
 const MOCK_SUBMISSIONS: Submission[] = [
   {
@@ -67,7 +43,7 @@ const MOCK_SUBMISSIONS: Submission[] = [
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState('applications');
-  const [bounties, setBounties] = useState<Bounty[]>(MOCK_BOUNTIES);
+  const [bounties, setBounties] = useState<Bounty[]>(getMyBounties());
 
   const handleMarkComplete = (id: string) => {
     setBounties(prev => prev.map(bounty => 
