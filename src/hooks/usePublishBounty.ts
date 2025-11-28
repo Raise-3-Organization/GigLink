@@ -2,15 +2,14 @@
 
 import { useState } from 'react';
 import { CreateBountyFormValues } from '@/lib/schemas/bounty';
-// import { useRouter } from 'next/navigation';
 
 export function usePublishBounty() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [hash, setHash] = useState<string | null>(null);
-  // const router = useRouter();
 
-  const publishBounty = async (data: CreateBountyFormValues) => {
+  const publishBounty = async (_data: CreateBountyFormValues) => {
+    void _data;
     setIsLoading(true);
     setIsSuccess(false);
     setHash(null);
@@ -24,10 +23,7 @@ export function usePublishBounty() {
       setHash(mockHash);
       setIsSuccess(true);
       
-      console.log('Bounty Published to "Chain":', data);
 
-      // 3. Optional: Redirect to dashboard after short delay
-      // setTimeout(() => router.push('/dashboard'), 1000);
       
     } catch (error) {
       console.error('Failed to publish bounty:', error);
