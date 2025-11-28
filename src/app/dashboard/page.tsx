@@ -75,6 +75,12 @@ export default function DashboardPage() {
     ));
   };
 
+  const handleCancelBounty = (id: string) => {
+    setBounties(prev => prev.map(bounty => 
+      bounty.id === id ? { ...bounty, status: 'CANCELLED' } : bounty
+    ));
+  };
+
   return (
     <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <PageHeader
@@ -116,6 +122,7 @@ export default function DashboardPage() {
              <BountyList 
                bounties={bounties} 
                onMarkComplete={handleMarkComplete}
+               onCancelBounty={handleCancelBounty}
              />
           )}
 

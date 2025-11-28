@@ -27,9 +27,10 @@ export interface Bounty {
 interface BountyListProps {
   bounties: Bounty[];
   onMarkComplete?: (id: string) => void;
+  onCancelBounty?: (id: string) => void;
 }
 
-export function BountyList({ bounties, onMarkComplete }: BountyListProps) {
+export function BountyList({ bounties, onMarkComplete, onCancelBounty }: BountyListProps) {
   if (bounties.length === 0) {
     return (
       <div className="text-center py-12 border rounded-xl bg-slate-50">
@@ -81,7 +82,7 @@ export function BountyList({ bounties, onMarkComplete }: BountyListProps) {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>View Details</DropdownMenuItem>
                 <DropdownMenuItem>Edit Bounty</DropdownMenuItem>
-                {bounty.status !== 'COMPLETED' && onMarkComplete && (
+                {bounty.status !== 'COMPLETED' && bounty.status !== 'CANCELLED' && onMarkComplete && (
                   <DropdownMenuItem 
                     className="text-green-600 font-medium"
                     onClick={() => onMarkComplete(bounty.id)}
@@ -89,7 +90,14 @@ export function BountyList({ bounties, onMarkComplete }: BountyListProps) {
                     Mark as Complete
                   </DropdownMenuItem>
                 )}
-                <DropdownMenuItem className="text-red-600">Cancel Bounty</DropdownMenuItem>
+                {bounty.status !== 'CANCELLED' && bounty.status !== 'COMPLETED' && onCancelBounty && (
+                  <DropdownMenuItem 
+                    className="text-red-600"
+                    onClick={() => onCancelBounty(bounty.id)}
+                  >
+                    Cancel Bounty
+                  </DropdownMenuItem>
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
