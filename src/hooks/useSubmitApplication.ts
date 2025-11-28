@@ -6,6 +6,7 @@ export function useSubmitApplication() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitApplication = async (_values: ApplyFormValues) => {
+    void _values;
     setIsSubmitting(true);
     try {
       // Simulate API call

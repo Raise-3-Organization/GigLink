@@ -9,6 +9,7 @@ export function usePublishBounty() {
   const [hash, setHash] = useState<string | null>(null);
 
   const publishBounty = async (_data: CreateBountyFormValues) => {
+    void _data;
     setIsLoading(true);
     setIsSuccess(false);
     setHash(null);
