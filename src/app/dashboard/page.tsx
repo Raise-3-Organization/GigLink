@@ -67,6 +67,13 @@ const MOCK_SUBMISSIONS: Submission[] = [
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState('applications');
+  const [bounties, setBounties] = useState<Bounty[]>(MOCK_BOUNTIES);
+
+  const handleMarkComplete = (id: string) => {
+    setBounties(prev => prev.map(bounty => 
+      bounty.id === id ? { ...bounty, status: 'COMPLETED' } : bounty
+    ));
+  };
 
   return (
     <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -95,7 +102,7 @@ export default function DashboardPage() {
           onChange={setActiveTab}
           tabs={[
             { id: 'applications', label: 'My Applications', count: MOCK_SUBMISSIONS.length },
-            { id: 'listings', label: 'My Listings', count: MOCK_BOUNTIES.length },
+            { id: 'listings', label: 'My Listings', count: bounties.length },
             { id: 'history', label: 'Payment History' }
           ]}
         />
@@ -106,7 +113,10 @@ export default function DashboardPage() {
           )}
           
           {activeTab === 'listings' && (
-             <BountyList bounties={MOCK_BOUNTIES} />
+             <BountyList 
+               bounties={bounties} 
+               onMarkComplete={handleMarkComplete}
+             />
           )}
 
           {activeTab === 'history' && (

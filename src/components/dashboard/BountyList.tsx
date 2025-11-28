@@ -26,9 +26,10 @@ export interface Bounty {
 
 interface BountyListProps {
   bounties: Bounty[];
+  onMarkComplete?: (id: string) => void;
 }
 
-export function BountyList({ bounties }: BountyListProps) {
+export function BountyList({ bounties, onMarkComplete }: BountyListProps) {
   if (bounties.length === 0) {
     return (
       <div className="text-center py-12 border rounded-xl bg-slate-50">
@@ -80,6 +81,14 @@ export function BountyList({ bounties }: BountyListProps) {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>View Details</DropdownMenuItem>
                 <DropdownMenuItem>Edit Bounty</DropdownMenuItem>
+                {bounty.status !== 'COMPLETED' && onMarkComplete && (
+                  <DropdownMenuItem 
+                    className="text-green-600 font-medium"
+                    onClick={() => onMarkComplete(bounty.id)}
+                  >
+                    Mark as Complete
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem className="text-red-600">Cancel Bounty</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
