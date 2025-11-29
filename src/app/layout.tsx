@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://giglink.vercel.app"),
   title: {
     default: "GigLink - Decentralized Bounty Platform",
     template: "%s | GigLink",
@@ -40,6 +41,13 @@ export const metadata: Metadata = {
     description: "Connect with talent and get work done on the Base network.",
     images: ["/og-image.png"],
     creator: "@giglink",
+  },
+  other: {
+    "fc:frame": "vNext",
+    "fc:frame:image": "https://giglink.vercel.app/og-image.png",
+    "fc:frame:button:1": "View Bounties",
+    "fc:frame:button:1:action": "link",
+    "fc:frame:button:1:target": "https://giglink.vercel.app",
   },
 };
 
